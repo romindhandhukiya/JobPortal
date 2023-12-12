@@ -7,6 +7,7 @@ require('dotenv').config();
 var cors = require('cors');
 const cookieParser = require('cookie-parser');
 const errorHandler = require('./middleware/error');
+const authRoutes = require('./routes/authRoutes');
 
 //connection
 mongoose.connect(process.env.DATABASE).then(()=> console.log("DB Connected"))
@@ -19,6 +20,8 @@ app.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
 app.use(cookieParser()); //for authentication
 app.use(cors());
 
+//apis 
+app.use('/api', authRoutes);
 
 //error handling middleware
 app.use(errorHandler);
