@@ -1,6 +1,41 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { ObjectId } = mongoose.Schema;
+
+const jobsHistorySchema = new mongoose.Schema({
+
+    title: {
+        type: String,
+        trim: true,
+        maxlength: 70
+    },
+    description: {
+        type: String,
+        trim: true
+    },
+    salary: {
+        type: String,
+        trim: true
+    },
+    location:{
+        type: String,
+    },
+    interviewDate: {
+        type: Date
+    },
+    applicationStatus: {
+        type: String,
+        enum: ['pending', 'accepted', 'rejected'],
+        default: 'pending'
+    },
+    user: {
+        type: ObjectId,
+        ref: 'User',
+        required: true
+    }
+
+}, {timestamps: true})
 
 const userSchema = new mongoose.Schema({
 
@@ -32,6 +67,7 @@ const userSchema = new mongoose.Schema({
         required: [true, "Password is Required"],
         minlength: [6, "Password must have atleast 6 character"]
     },
+    jobsHistory: [ jobsHistorySchema ],
     role:{
         type: String,
         default: 0
