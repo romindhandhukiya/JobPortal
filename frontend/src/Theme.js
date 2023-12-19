@@ -1,14 +1,14 @@
-import { createTheme } from '@mui/material'
-import { blue, lightBlue } from '@mui/material/colors'
+import { createTheme } from '@mui/material/styles';
+import { blue, lightBlue } from '@mui/material/colors';
 
 export const theme = createTheme({
     palette: {
-        primary:{
+        primary: {
             main: blue[500]
         },
-        secondary:{
+        secondary: {
             main: lightBlue[800],
-            midNightBlue: '#003366' 
+            midNightBlue: "#003366"
         }
     }
-})
+});
